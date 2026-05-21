@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page Modern</title>
+  <style>
+    :root {
+      --bg: #08101d;
+      --surface: #112238;
+      --accent: #5db9ff;
+      --accent-2: #9c7bff;
+      --text: #edf2f7;
+      --muted: #a0aec0;
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, rgba(93, 185, 255, .16), transparent 30%),
+                  radial-gradient(circle at bottom right, rgba(156, 123, 255, .14), transparent 24%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1200px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 3rem 0 4rem;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .brand {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 2rem;
+      align-items: center;
+      min-height: calc(100vh - 150px);
+    }
+
+    .hero-copy {
+      max-width: 620px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: .86rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 5vw, 4.4rem);
+      line-height: 1.03;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      max-width: 44rem;
+      margin-bottom: 2rem;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 1rem 1.8rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      box-shadow: 0 18px 45px rgba(93, 185, 255, .18);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, .08);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      min-height: 420px;
+      border-radius: 32px;
+      padding: 2rem;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.09);
+      backdrop-filter: blur(18px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(255,255,255,.08);
+      padding: .8rem 1rem;
+      border-radius: 999px;
+      font-size: .95rem;
+      color: #e5e9f0;
+    }
+
+    .badge span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: inline-block;
+    }
+
+    .stats {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .stat {
+      background: rgba(255,255,255,.06);
+      padding: 1.2rem 1rem;
+      border-radius: 24px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.5rem;
+      margin-bottom: .35rem;
+    }
+
+    .features {
+      margin-top: 4rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 28px;
+      padding: 2rem;
+      min-height: 240px;
+    }
+
+    .feature-card h3 {
+      margin-bottom: .85rem;
+      font-size: 1.15rem;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    footer {
+      margin-top: 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 1.5rem;
+      font-size: .92rem;
+    }
+
+    .section-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .pulse {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 8px rgba(93, 185, 255, .12);
+      animation: pulse 1.8s infinite ease-out;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.9); opacity: 0; }
+    }
+
+    .visual-circle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(20px);
+      opacity: .65;
+    }
+
+    .visual-circle.one {
+      width: 220px;
+      height: 220px;
+      top: -40px;
+      right: -40px;
+      background: rgba(93, 185, 255, .25);
+    }
+
+    .visual-circle.two {
+      width: 180px;
+      height: 180px;
+      bottom: -50px;
+      left: -30px;
+      background: rgba(156, 123, 255, .18);
+    }
+
+    .visual-screenshot {
+      width: 100%;
+      height: 300px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(255,255,255,.2), rgba(255,255,255,.06));
+      border: 1px solid rgba(255,255,255,.12);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .visual-screenshot::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      opacity: .32;
+      filter: blur(1px);
+    }
+
+    .visual-screenshot span {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 1rem 1.5rem;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, .42);
+      backdrop-filter: blur(10px);
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-visual {
+        min-height: 360px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        padding: 2rem 0 3rem;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .badge-row,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">NovaWave</div>
+      <nav>
+        <a href="#features">Fitur</a>
+        <a href="#about">Tentang</a>
+        <a href="#contact">Kontak</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> Solusi digital</div>
+        <h1>Bawa ide Anda ke level selanjutnya dengan pengalaman web yang modern</h1>
+        <p>Landing page ini dirancang untuk menarik perhatian, membangun kepercayaan, dan mendorong pengguna mengambil tindakan. Cocok untuk produk digital, startup, atau presentasi brand yang elegan.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary">Mulai Sekarang</button>
+          <button class="btn btn-secondary">Lihat Demo</button>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="visual-circle one"></div>
+        <div class="visual-circle two"></div>
+        <div class="card">
+          <div class="badge-row">
+            <div class="badge"><span></span>Konversi tinggi</div>
+            <div class="badge"><span></span>Desain responsif</div>
+          </div>
+          <div class="visual-screenshot">
+            <span>Demo tampilan web interaktif</span>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong>18K</strong> Pengunjung</div>
+            <div class="stat"><strong>92%</strong> Kepuasan</div>
+            <div class="stat"><strong>24/7</strong> Dukungan</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="features">
+      <article class="feature-card">
+        <h3>Desain premium</h3>
+        <p>Layout yang bersih, tipografi tajam, dan warna modern membuat setiap halaman terlihat profesional dan mudah diingat.</p>
+      </article>
+      <article class="feature-card">
+        <h3>Kecepatan & performa</h3>
+        <p>Struktur HTML dan CSS ringan memastikan loading cepat, pengalaman mulus, dan peringkat lebih baik di mesin pencari.</p>
+      </article>
+      <article class="feature-card">
+        <h3>Dukungan mobile</h3>
+        <p>Responsive design adaptif menjamin tampilan sempurna di smartphone, tablet, maupun layar desktop besar.</p>
+      </article>
+    </section>
+
+    <footer id="contact">
+      <span>© 2026 NovaWave — Solusi Web Modern</span>
+      <span>Hubungi kami: hello@novawave.id</span>
+    </footer>
+  </div>
+</body>
+</html>
